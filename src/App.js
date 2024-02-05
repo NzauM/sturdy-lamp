@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Task from './Task.js'
+import TaskForm from './TaskForm.js';
 
 
 function App() {
@@ -12,6 +13,11 @@ function App() {
 
   const[tasks, setTasks] = useState(myTasks)
 
+  function receiveFormData(param){
+    console.log(param);
+    setTasks([...tasks,param])
+  }
+
 
   function receiveChildData(secret){
     // receives data from child component
@@ -23,6 +29,7 @@ function App() {
    <>
    <h1>Welcome to my Todo App</h1>
    <p>Secret Word is: {secretWord}</p>
+   <TaskForm receiveData={receiveFormData}/>
    {tasks.map((task,index)=>{
     return(
       <Task key={index} title={task.title} description={task.description} dueDate={task.dueDate} parentFn={receiveChildData}/>
