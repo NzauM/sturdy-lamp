@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState} from "react"
+import { Link, Outlet } from "react-router-dom"
 
 function Task({title, description, dueDate, parentFn}){
     const[buttonColor, setButtonColor] = useState("blue")
@@ -11,6 +12,7 @@ function Task({title, description, dueDate, parentFn}){
       setButtonText("Task Completed")
     }
 
+
     let secretInfo = "Js is lowkey annoying"
 
     function passInfoToPArent(){
@@ -20,10 +22,13 @@ function Task({title, description, dueDate, parentFn}){
     }
     return(
         <>
-        <h3>Task Title: {title} </h3>
-        <p>Task Description: {description}</p>
+        <h3> {title} <Link to={`/tasks/${title}`}>View Task</Link> </h3>
+        {/* <Outlet/> */}
+
+        
+        {/* <p>Task Description: {description}</p>
         <button onClick={changeButton} style={{backgroundColor: buttonColor, color:"white"}}> {buttonText} </button>
-        <button onClick={passInfoToPArent}>Show Secret Word</button>
+        <button onClick={passInfoToPArent}>Show Secret Word</button> */}
         </>
     )
 }
